@@ -1,7 +1,7 @@
 # 🏦 Java ATM Simulator - Bootcamp Project  
 *A secure, MVC-based ATM system simulating real-world banking operations*  
 
-**Team**: [Amir Mohammad Ghazanfari](https://github.com/amirghazanfari), [Mohammad Asadi], [Mohammad Nourizade]
+**Team**: [Amir Mohammad Ghazanfari](https://github.com/amirghazanfari), [Mohammad Asadi](https://github.com/mohammadasadi1998), [Mohammad Nourizade](http://github.com/mjnori)
 
 ---
 

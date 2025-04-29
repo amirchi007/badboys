@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         double balance;
         boolean isRunning = true;
-        int choice ;
+        int choice;
 
         // step two display menu
         System.out.println("______________");
@@ -19,6 +19,25 @@ public class Main {
         System.out.println("3. withdraw");
         System.out.println("3. Exit");
         System.out.println("______________");
+        // getting input from user
+        System.out.print("Enter The Options 1-2-3-4");
+        choice = scanner.nextInt();
+
+//        while (choice == 1) {
+//            System.out.println("Show Balance");
+//        }
+//        do {
+//            System.out.println("deposit");
+//        } while (choice == 2);
+//        do {
+//            System.out.println("withdraw");
+//        } while (choice == 3);
+//        do {
+//            isRunning = false;
+//        } while (choice == 4);
+//        do {
+//            System.out.println("Enter Valid numbers");
+//        } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
 
         // last step: exit
 

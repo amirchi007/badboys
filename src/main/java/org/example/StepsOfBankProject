@@ -1,0 +1,20 @@
+#steps of making bank project
+1.declare variable
+2.display menu
+3.get and process user choice
+4.showBalance
+5.deposit
+6.withdraw
+7.exit
+
+#test
+1.after creating account balance is zero
+2.after plus deposit balance go up
+3.withdraw balance could not be more than balance
+
+#features
+create account
+show balance
+deposit
+withdraw
+exit

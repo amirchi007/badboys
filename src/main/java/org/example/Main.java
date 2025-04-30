@@ -23,6 +23,9 @@ public class Main {
         System.out.print("Enter The Options 1-2-3-4");
         choice = scanner.nextInt();
 
+        // step three process user choice
+
+//        bullshit way
 //        while (choice == 1) {
 //            System.out.println("Show Balance");
 //        }
@@ -38,6 +41,13 @@ public class Main {
 //        do {
 //            System.out.println("Enter Valid numbers");
 //        } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+
+        switch (choice) {
+            case 1 -> System.out.println("show balance");
+            case 2 -> System.out.println("deposit");
+            case 3 -> System.out.println("withdraw");
+            default -> System.out.println("Exit");
+        }
 
         // last step: exit
 

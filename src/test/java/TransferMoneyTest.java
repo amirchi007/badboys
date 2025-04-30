@@ -1,3 +1,4 @@
+import org.example.AmountException;
 import org.example.BankServices;
 import org.example.model.Account;
 import org.junit.jupiter.api.Test;
@@ -17,25 +18,10 @@ public class TransferMoneyTest {
         Account sender = new Account(123, "amir", 100);
         Account receiver = new Account(456, "ali", 50);
 
-        BankServices bankServices = new BankServices();
-
-        bankServices.transferMoney(sender, receiver, 40);
+        sender.transferMoney(sender, receiver, 40);
 
         assertEquals(60, sender.getBalance(), "sender balance decrease 40 from last balance");
         assertEquals(90, receiver.getBalance(), "receiver balance raise to 40 from last balance");
-    }
-
-    @Test
-    void shouldUpdateSenderAndReceiverBalanceAfterTransfer() {
-//        Account sender = new Account(123,"amir",100);
-//        Account receiver = new Account(456,"ali",50);
-//
-//        BankServices bankServices = new BankServices();
-//
-//        bankServices.transferMoney(sender,receiver,40);
-//
-//        assertEquals(60,sender.getBalance(),"sender balance decrease 40 from last balance");
-//        assertEquals(60,sender.getBalance(),"receiver balance raise to 40 from last balance");
     }
 
     @Test
@@ -43,10 +29,8 @@ public class TransferMoneyTest {
         Account sender = new Account(123, "amir", 100);
         Account receiver = null;
 
-        BankServices bankServices = new BankServices();
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            bankServices.transferMoney(sender, receiver, 100);
+        assertThrows(AmountException.class, () -> {
+            sender.transferMoney(sender, receiver, 100);
         });
     }
 
@@ -55,10 +39,9 @@ public class TransferMoneyTest {
         Account sender = new Account(123, "amir", 100);
         Account receiver = new Account(456, "ali", 50);
 
-        BankServices bankServices = new BankServices();
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bankServices.transferMoney(sender, receiver, 200);
+            sender.transferMoney(sender, receiver, 200);
         });
     }
 
@@ -66,10 +49,8 @@ public class TransferMoneyTest {
     void shouldNotAllowTransferToItsAccount() {
         Account sender = new Account(123, "amir", 100);
 
-        BankServices bankServices = new BankServices();
-
         assertThrows(IllegalArgumentException.class, () -> {
-            bankServices.transferMoney(sender, sender, 50);
+            sender.transferMoney(sender, sender, 50);
         });
     }
 

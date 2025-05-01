@@ -1,4 +1,4 @@
-import org.example.exceptionHandler.BankServiceException;
+import org.example.exceptionHandler.AmountException;
 import org.example.model.Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ public class DepositWithdrawTest {
 
     @Test
     void shouldThrowExceptionWhenDepositAmountIsNegative() {
-        assertThrows(BankServiceException.class, () -> {
+        assertThrows(AmountException.class, () -> {
             account.deposit(-50.0);
         });
     }
@@ -40,7 +40,8 @@ public class DepositWithdrawTest {
 
     @Test
     void shouldThrowExceptionWhenWithDrawingIsMoreThanBalance() {
-        assertThrows(BankServiceException.class, () -> {
+
+        assertThrows(AmountException.class, () -> {
             account.withdraw(2000);
         });
     }

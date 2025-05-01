@@ -1,22 +1,45 @@
 package org.example.model;
 
-import org.example.AmountException;
+import org.example.exceptionHandler.AmountException;
 
 public class Account {
-    private int accountNumber;
-    private String name;
+    private final int accountId;
+    private final int Password;
+    private final String name;
     private double balance;
 
-    public Account(int accountNumber, String name, double balance) {
-        this.accountNumber = accountNumber;
+    public Account(int accountId, int accountPassword, String name, double balance) {
+        this.accountId = accountId;
+        this.Password = accountPassword;
         this.name = name;
         this.balance = balance;
     }
+
+    public boolean checkIdAndPassword(int acNumberAndPassword) {
+        boolean  signUpSuccessfully = false;
+        if (acNumberAndPassword == accountId + Password){
+             return signUpSuccessfully = true;
+        }
+        return signUpSuccessfully;
+    };
 
     // getter (just of test)
     public double getBalance() {
         return balance;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+
+//    public int getPassWord() {
+//        return Password;
+//    }
 
     // get money
     public void withdraw(double amount) {

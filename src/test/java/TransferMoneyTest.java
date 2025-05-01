@@ -1,6 +1,6 @@
-import org.example.AmountException;
-import org.example.BankServices;
+import org.example.exceptionHandler.AmountException;
 import org.example.model.Account;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,10 +13,17 @@ public class TransferMoneyTest {
      exception for wrong account
     */
 
+    Account sender;
+    Account receiver;
+
+    @BeforeEach
+    void setUp() {
+        sender = new Account(123, 456, "amir", 100);
+        receiver = new Account(456, 789, "ali", 50);
+    }
+
     @Test
     void shouldTransferMoneySuccessfullyBetweenAccounts() {
-        Account sender = new Account(123, "amir", 100);
-        Account receiver = new Account(456, "ali", 50);
 
         sender.transferMoney(sender, receiver, 40);
 
@@ -26,8 +33,7 @@ public class TransferMoneyTest {
 
     @Test
     void shouldThrowErrorWhenReceiverAccountDoesNotExist() {
-        Account sender = new Account(123, "amir", 100);
-        Account receiver = null;
+        receiver = null;
 
         assertThrows(AmountException.class, () -> {
             sender.transferMoney(sender, receiver, 100);
@@ -36,8 +42,6 @@ public class TransferMoneyTest {
 
     @Test
     void shouldThrowErrorWhenInsufficientBalanceForTransfer() {
-        Account sender = new Account(123, "amir", 100);
-        Account receiver = new Account(456, "ali", 50);
 
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -47,8 +51,6 @@ public class TransferMoneyTest {
 
     @Test
     void shouldNotAllowTransferToItsAccount() {
-        Account sender = new Account(123, "amir", 100);
-
         assertThrows(IllegalArgumentException.class, () -> {
             sender.transferMoney(sender, sender, 50);
         });

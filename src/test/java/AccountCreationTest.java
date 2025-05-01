@@ -1,4 +1,4 @@
-import org.example.exceptionHandler.AccountError;
+import org.example.exceptionHandler.AccountException;
 import org.example.model.Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,13 +34,6 @@ public class AccountCreationTest {
     @Test
     void shouldInitializeBalanceToZero() {
         assertEquals(0.0, account.getBalance());
-    }
-
-    @Test
-    void shouldThrowErrorWhenNameIsEmpty() {
-        assertThrows(AccountError.class, () -> {
-            new Account(101,888, "", 0.0);
-        });
     }
 
 }

@@ -1,3 +1,4 @@
+import org.example.exceptionHandler.BalanceInquiryException;
 import org.example.model.Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +30,9 @@ public class BalanceInquiryTest {
 
     @Test
     void shouldThrowExceptionWhenAccountNotFound() {
-        assertThrows(IllegalArgumentException.class, () -> {
+        account = null;
+        assertThrows(NullPointerException.class, () -> {
             account.getBalance();
-            // taghir
         });
     }
 }

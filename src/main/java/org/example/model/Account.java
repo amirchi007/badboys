@@ -4,26 +4,21 @@ import org.example.exceptionHandler.AmountException;
 
 public class Account {
     private final int accountId;
-    private final int Password;
+    private final int password;
     private final String name;
     private double balance;
 
-    public Account(int accountId, int accountPassword, String name, double balance) {
+    public Account(int accountId, int password, String name, double balance) {
         this.accountId = accountId;
-        this.Password = accountPassword;
+        this.password = password;
         this.name = name;
         this.balance = balance;
     }
 
-    public boolean checkIdAndPassword(int acNumberAndPassword) {
-        boolean  signUpSuccessfully = false;
-        if (acNumberAndPassword == accountId + Password){
-             return signUpSuccessfully = true;
-        }
-        return signUpSuccessfully;
-    };
+    public boolean checkIdAndPassword(int id, int pass) {
+        return this.accountId == id && this.password == pass;
+    }
 
-    // getter (just of test)
     public double getBalance() {
         return balance;
     }
@@ -36,33 +31,25 @@ public class Account {
         return accountId;
     }
 
-
-//    public int getPassWord() {
-//        return Password;
-//    }
-
-    // get money
     public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-        }
-    }
-
-    // send money
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        }
-    }
-
-    public void transferMoney(Account from, Account to, double amount) {
-        if (amount > 0 && amount <= balance) {
-            from.withdraw(amount);
-            to.deposit(amount);
-        } else {
+        if (amount <= 0 || amount > balance) {
             throw new AmountException();
         }
+        balance -= amount;
     }
 
+    public void deposit(double amount) {
+        if (amount <= 0) {
+            throw new AmountException();
+        }
+        balance += amount;
+    }
 
+    public void transferMoney(Account to, double amount) {
+        if (to == null || to == this || amount <= 0 || amount > this.balance) {
+            throw new AmountException();
+        }
+        this.withdraw(amount);
+        to.deposit(amount);
+    }
 }

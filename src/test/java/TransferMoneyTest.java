@@ -24,36 +24,25 @@ public class TransferMoneyTest {
 
     @Test
     void shouldTransferMoneySuccessfullyBetweenAccounts() {
-
-        sender.transferMoney(sender, receiver, 40);
-
-        assertEquals(60, sender.getBalance(), "sender balance decrease 40 from last balance");
-        assertEquals(90, receiver.getBalance(), "receiver balance raise to 40 from last balance");
+        sender.transferMoney(receiver, 40);
+        assertEquals(60, sender.getBalance());
+        assertEquals(90, receiver.getBalance());
     }
 
     @Test
     void shouldThrowErrorWhenReceiverAccountDoesNotExist() {
         receiver = null;
-
-        assertThrows(AmountException.class, () -> {
-            sender.transferMoney(sender, receiver, 100);
-        });
+        assertThrows(AmountException.class, () -> sender.transferMoney(receiver, 100));
     }
 
     @Test
     void shouldThrowErrorWhenInsufficientBalanceForTransfer() {
-
-
-        assertThrows(IllegalArgumentException.class, () -> {
-            sender.transferMoney(sender, receiver, 200);
-        });
+        assertThrows(AmountException.class, () -> sender.transferMoney(receiver, 200));
     }
 
     @Test
     void shouldNotAllowTransferToItsAccount() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            sender.transferMoney(sender, sender, 50);
-        });
+        assertThrows(AmountException.class, () -> sender.transferMoney(sender, 50));
     }
 
 }
